@@ -1,0 +1,65 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: getmoney
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/getmoney?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: 062629
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  mail:
+    host: smtp.qq.com
+    username: 3548496252@qq.com
+    password: rkmarcbncwzhdadf
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.campus.orders.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+jwt:
+  secret: CampusOrdersSecretKey2024VeryLongAndSecure
+  access-token-expiration: 7200000
+  refresh-token-expiration: 1296000000
+  header: Authorization
+  prefix: Bearer
+
+app:
+  dev:
+    enable: false
+    test-code: "123456"
+  mail:
+    enabled: true # 控制是否真实发送邮件验证码
+
+logging:
+  level:
+    com.campus.orders: debug
